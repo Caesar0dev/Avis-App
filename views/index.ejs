@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Avis script</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
+</head>
+<style>
+    :root {
+        background: #f5f6fa;
+        color: #9c9c9c;
+        font: 1rem "PT Sans", sans-serif;
+    }
+
+    html,
+    body,
+    .container {
+        height: 100%;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    a:hover {
+        color: #7f8ff4;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .uppercase {
+        text-transform: uppercase;
+    }
+
+    .btn {
+        display: inline-block;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        border: 0;
+        outline: 0;
+        padding: 0;
+        transition: all 200ms ease-in;
+        cursor: pointer;
+    }
+
+    .btn--primary {
+        background: #7f8ff4;
+        color: #fff;
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        padding: 12px 36px;
+    }
+
+    .btn--primary:hover {
+        background: #6c7ff2;
+    }
+
+    .btn--primary:active {
+        background: #7f8ff4;
+        box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn--inside {
+        margin-left: -96px;
+    }
+    
+    .form__field {
+        width: 360px;
+        background: #fff;
+        color: #a3a3a3;
+        font: inherit;
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+        border: 0;
+        border-radius: 30px;
+        outline: 0;
+        padding: 22px 18px;
+        font-weight: bold;
+    }
+    
+    .circle {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0.5rem;
+        border-radius: 50%;
+        background: #FFCDB2;
+        overflow: hidden;
+    }
+    #progressBar {
+        background-image: conic-gradient(#00ab15 0%, #cccccc 0);
+    }
+    .circle .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 115px;
+        height: 115px;
+        background: #ffffff;
+        border-radius: 50%;
+        font-size: 1.85em;
+        font-weight: 300;
+        color: #9c9c9c
+    }
+    #submitData:focus {
+        background-color: #b4b4b4;
+        color: white;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="container__item">
+          <form class="form" id="myForm">
+            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01" />
+            <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button>
+          </form>
+        </div>
+        <!-- <h1><%= message %></h1> -->
+        <h1 id="statusText">Welcome to my application.</h1>
+        <div class="wrap-circles">
+            <div class="circle per-25" id="progressBar">
+              <div class="inner" id="progressText">0%</div>
+            </div>
+          </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const form = document.querySelector('#myForm');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const input = document.querySelector('#submitData');
+        
+        const name = input.value;
+        console.log("input data: ", name);
+        const data = {'data': name};
+
+        axios.post('/submit', data, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                // Handle the response data
+                console.log(response.data);
+                document.getElementById("statusText").innerHTML = "scraping now ...";
+                document.getElementById("progressBar").style.backgroundImage = "conic-gradient(#00ab15 "+25+"%, #cccccc 0)";
+                document.getElementById("progressText").innerHTML = 25 + "%";
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error(error);
+            });
+            
+    });
+</script>
+</html>
