@@ -4,6 +4,7 @@
     <title>Avis script</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
     :root {
@@ -69,7 +70,7 @@
     .btn--inside {
         margin-left: -96px;
     }
-    
+
     .form__field {
         width: 360px;
         background: #fff;
@@ -82,7 +83,7 @@
         padding: 22px 18px;
         font-weight: bold;
     }
-    
+
     .circle {
         position: relative;
         width: 150px;
@@ -92,9 +93,11 @@
         background: #FFCDB2;
         overflow: hidden;
     }
+
     #progressBar {
         background-image: conic-gradient(#00ab15 0%, #cccccc 0);
     }
+
     .circle .inner {
         display: flex;
         justify-content: center;
@@ -111,92 +114,521 @@
         font-weight: 300;
         color: #9c9c9c
     }
-    #submitData:focus {
+
+    /* #submitData:focus {
         background-color: #b4b4b4;
         color: white;
+    } */
+
+    #download {
+        margin-top: 30px;
+        visibility: hidden;
+    }
+    /* CSS */
+    .button-17 {
+        align-items: center;
+        appearance: none;
+        background-color: #fff;
+        border-radius: 24px;
+        border-style: none;
+        box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+        box-sizing: border-box;
+        color: #3c4043;
+        cursor: pointer;
+        display: inline-flex;
+        fill: currentcolor;
+        font-family: "Google Sans",Roboto,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 48px;
+        justify-content: center;
+        letter-spacing: .25px;
+        line-height: normal;
+        max-width: 100%;
+        overflow: visible;
+        padding: 2px 24px;
+        position: relative;
+        text-align: center;
+        text-transform: none;
+        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: auto;
+        will-change: transform,opacity;
+        z-index: 0;
     }
 
-    
-    
-    /* .custom-search {
-        position: relative;
-        width: 300px;
-      }
-      .custom-search-input {
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 100px;
-        padding: 10px 100px 10px 20px; 
-        line-height: 1;
-        box-sizing: border-box;
+    .button-17:hover {
+        background: #F6F9FE;
+        color: #174ea6;
+    }
+
+    .button-17:active {
+        box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
         outline: none;
-      }
-      .custom-search-botton {
-        position: absolute;
-        right: 3px; 
-        top: 3px;
-        bottom: 3px;
-        border: 0;
-        background: #d1095e;
-        color: #fff;
+    }
+
+    .button-17:focus {
         outline: none;
-        margin: 0;
-        padding: 0 10px;
-        border-radius: 100px;
-        z-index: 2;
-      } */
+        border: 2px solid #4285f4;
+    }
+
+    .button-17:not(:disabled) {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):hover {
+        box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+    }
+
+    .button-17:not(:disabled):focus {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):active {
+        box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+    }
+
+    .button-17:disabled {
+        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+    }
+        /*
+    ================================
+        Best Viewed In Full Page
+    ================================
+*/
+
+/* Because I'm using the fixed position for modals, if the screen height is small then you would not be able to see a full modal that's why it's recommended that you see this pen in full-page and not on editor view. */
+
+/* defaults */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  --light: hsl(220, 50%, 90%);
+  --primary: hsl(255, 30%, 55%);
+  --focus: hsl(210, 90%, 50%);
+  --border-color: hsla(0, 0%, 100%, .2);
+  /* --global-background: hsl(220, 25%, 10%); */
+  --background: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%));
+  --shadow-1: hsla(236, 50%, 50%, .3);
+  --shadow-2: hsla(236, 50%, 50%, .4);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', sans-serif;
+  /* color: var(--light); */
+  background: var(--global-background);
+}
+
+a,
+a:link {
+  font-family: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
+/* box */
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4rem 2rem;
+}
+
+.box:not(:first-child) {
+  height: 45rem;
+}
+
+.box__title {
+  font-size: 10rem;
+  font-weight: normal;
+  letter-spacing: .8rem;
+  margin-bottom: 2.6rem;
+}
+
+.box__title::first-letter {
+  color: var(--primary);
+}
+
+.box__p,
+.box__info,
+.box__note {
+  font-size: 1.6rem;
+}
+
+.box__info {
+  margin-top: 6rem;
+}
+
+.box__note {
+  line-height: 2;
+}
+
+
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  /* --m-background is set as inline style */
+  background: var(--m-background);
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  width: 60rem;
+  padding: 4rem 2rem;
+  border-radius: .8rem;
+
+  color: var(--light);
+  background: var(--background);
+  box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
+  position: relative;
+
+  overflow: hidden;
+}
+
+.modal__title {
+  font-size: 3.2rem;
+}
+
+.modal__text {
+  padding: 0 4rem;
+  margin-top: 4rem;
+
+  font-size: 1.6rem;
+  line-height: 2;
+}
+
+.modal__btn {
+  margin-top: 4rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  background: transparent;
+  font-size: 1.4rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+.modal__btn:nth-of-type(1) {
+  margin-right: 1rem;
+}
+
+.modal__btn:hover,
+.modal__btn:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+
+/* link-... */
+.link-1 {
+  font-size: 1rem;
+    font-weight: bold;
+  /* color: var(--light); */
+  /* background: var(--background); */
+  box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
+  border-radius: 100rem;
+  padding: 1.4rem 1.4rem;
+
+  transition: .2s;
+}
+
+.link-1:hover,
+.link-1:focus {
+  transform: translateY(-.2rem);
+  box-shadow: 0 0 4.4rem .2rem var(--shadow-2);
+}
+
+.link-1:focus {
+  box-shadow:
+    0 0 4.4rem .2rem var(--shadow-2),
+    0 0 0 .4rem var(--global-background),
+    0 0 0 .5rem var(--focus);
+}
+
+.link-2 {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  font-size: 2.2rem;
+
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+}
+
+.link-2::before {
+  content: '×';
+
+  transform: translateY(-.1rem);
+}
+
+.link-2:hover,
+.link-2:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+.abs-site-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: hsla(0, 0%, 1000%, .6);
+  font-size: 1.6rem;
+}
+#titleText {
+  color: #333;
+  -webkit-text-stroke: 1px #282828;
+  text-shadow: 0px 4px 4px #282828;
+  padding-bottom: 50px;
+}
+#statusText {
+    padding: 30px 0px;
+}
 </style>
 <body>
-    <div class="container">
-        <div class="container__item">
-          <form class="form" id="myForm">
-            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01" />
-            <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button>
-          </form>
-        </div>
-        <!-- <div class="custom-search">
-            <input type="text" class="custom-search-input" placeholder="Enter your email">
-            <button class="custom-search-botton" type="button">Subscribe</button>  
-        </div> -->
-        <!-- <h1><%= message %></h1> -->
-        <h1 id="statusText">Welcome to my application.</h1>
-        <div class="wrap-circles">
-            <div class="circle per-25" id="progressBar">
-              <div class="inner" id="progressText">0%</div>
-            </div>
-          </div>
+<div class="container">
+    <h1 id="titleText" style="font-size: 70px;">Avis</h1>
+    <div class="container__item">
+        <form class="form" id="myForm">
+            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01"/>
+            <!-- <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button> -->
+            <button type="button" class="btn btn--primary btn--inside uppercase" onclick="checkFileAndSubmit()">Start</button>
+        </form>
     </div>
+    <!-- <div class="custom-search">
+        <input type="text" class="custom-search-input" placeholder="Enter your email">
+        <button class="custom-search-botton" type="button">Subscribe</button>
+    </div> -->
+    <!-- <h1><%= message %></h1> -->
+    <h1 id="statusText">Welcome to my application.</h1>
+    <div class="wrap-circles">
+        <div class="circle per-25" id="progressBar">
+            <div class="inner" id="progressText">0%</div>
+        </div>
+    </div>
+    <!-- HTML !-->
+    <a id="downloadLink" href="/Avis2023-12.csv">
+        <button id="download" class="button-17" role="button">Download</button>
+    </a>
+</div>
+
+<!-- <div class="box">    -->
+    <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
+        <div class="modal">
+          <h1 class="modal__title">Warning!</h1>
+          <p class="modal__text" id="modalText">The 2023-12 results file already exists. Would you like to now download an existing file without scraping it? Click the "Download" button to download it. To ignore and scrap again, click the “Ignore” button.</p>
+          <button class="modal__btn" onclick="downloadFuction()">Download &rarr;</button>
+          <button class="modal__btn" onclick="submitFunction()">Ignore &rarr;</button>
+          <a href="/" class="link-2"></a>
+        </div>
+      </div>
+  <!-- </div> -->
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    const form = document.querySelector('#myForm');
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
+    let percentageInterval = null;
+    let count = 0;
+    let name = "";
+    let startDate = "";
+    let fileName = "";
+    let startFileName = "";
+    function checkFileAndSubmit() {
+        startDate = document.getElementById('submitData').value;
+        startFileName = "Avis"+startDate+".csv";
+        console.log("submit file >>> ", startFileName);
+        // window.location.href = `/${startFileName}`;
 
-        const input = document.querySelector('#submitData');
-        
-        const name = input.value;
-        console.log("input data: ", name);
-        const data = {'data': name};
 
-        axios.post('/submit', data, {
+        fetch(`/${startFileName}`).then(response => {
+            if (response.ok) {
+                document.getElementById("modalText").innerHTML = `The ${startFileName} file already exists. Would you like to now download an existing file without scraping it? Click the "Download" button to download it. To ignore and scrap again, click the “Ignore” button.`;
+                // If the file exists, download it
+                // window.location.href = `/static/${fileName}`;
+                window.location.href = "#m2-o";
+            } else {
+                // If the file doesn't exist, submit the form
+                submitFunction();
+            }
+        }).catch(err => {
+            console.error('Error fetching the file:', err);
+        });
+    }
+    const updatePercentage = (count, scrapeStartDate) => {
+        console.log("count >>> ", count);
+        document.getElementById("progressBar").style.backgroundImage = "conic-gradient(#00ab15 " + count + "%, #cccccc 0)";
+        document.getElementById("progressText").innerHTML = count + "%";
+        if (count == "100") {
+            document.getElementById("download").style.visibility = "visible";
+            document.getElementById("progressText").style.color = "#00ab15";
+            document.getElementById("statusText").innerHTML = "scraping done successfully!";
+            
+        } else if (count != "0") {
+            document.getElementById("statusText").innerHTML = "scraping now for "+ scrapeStartDate +" ...";
+        }
+        else {
+            document.getElementById("download").style.visibility = "hidden";
+            document.getElementById("progressText").style.color = "#9c9c9c";
+        }
+        fileName = "Avis"+scrapeStartDate+".csv";
+        console.log("download link : ", fileName);
+        document.getElementById("downloadLink").href = "/"+fileName;
+    }
+
+    const getPercentage = () => {
+        axios.get('/getpercentage', "Hello", {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => {
-                // Handle the response data
-                console.log(response.data);
-                document.getElementById("statusText").innerHTML = "scraping now ...";
-                document.getElementById("progressBar").style.backgroundImage = "conic-gradient(#00ab15 "+25+"%, #cccccc 0)";
-                document.getElementById("progressText").innerHTML = 25 + "%";
+            .then(res => {
+                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", res);
+                let percentage = res.data.percentageCount
+                if (percentage) {
+                    console.log("disable >>>>>>>>", percentage);
+                    document.getElementById("submitData").disabled = true;
+                    document.getElementById("submitData").style.cursor = "not-allowed";
+                    document.getElementById("statusText").innerHTML = "scraping now for "+ res.data.scrapeStartDate +" ...";
+
+                }
+                percentage = (Number(percentage)/63180*100).toFixed(0);
+                percentage = percentage.toString();
+                console.log("percentage >>> ", percentage);
+                updatePercentage(percentage, res.data.scrapeStartDate);
             })
-            .catch(error => {
-                // Handle any errors
-                console.error(error);
-            });
+            .catch(err => {
+            })
+    }
+
+    percentageInterval = setInterval(() => {
+        getPercentage()
+    }, 1000)
+
+    const submitFunction = () => {
+
+        const deleteFileFuction = () => {
+            const deletefileName = "Avis2024-05.csv";
+            const data = {'deletefileName': deletefileName};
+            axios.post('/delete-file', data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => {
+                    console.log("file deleted!!!");
+                })
+        }
+
+        try {
+            deleteFileFuction();
+        } catch (error) {
             
-    });
+        }
+        
+        // event.preventDefault();
+        
+        const input = document.querySelector('#submitData');
+
+        name = input.value;
+        if (name) {
+            console.log("input data: ", name);
+            const data = {'data': name};
+            
+            document.getElementById("statusText").innerHTML = "scraping now for "+name+" ...";
+    
+            axios.post('/submit', data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // Handle the response data
+                    console.log(response.data);
+                    // document.getElementById("statusText").innerHTML = "scraping now ...";
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error(error);
+                });
+            
+        }
+
+    };
+    const downloadFuction = () => {
+        // const fileName = "Avis"+document.getElementById('submitData').value+".csv";
+        console.log("download file --> ", startFileName);
+
+        window.location.href = "/";
+        window.location.href = `/${startFileName}`;
+    }
+    // function downloadFuction() {
+    //     console.log("download started .............................................");
+    //     const data = {data: "Hello"};
+    //     // axios.get('/download', fileName, {
+    //     //     headers: {
+    //     //         'Content-Type': 'application/json'
+    //     //     }
+    //     // })
+    //     //     .then(res => {
+    //     //         document.getElementById("downloadLink").href = fileName;
+    //     //         console.log("Database download successfully!");
+                
+    //     //     })
+    //     //     .catch(err => {
+    //     //     })
+    // }
 </script>
 </html>

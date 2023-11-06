@@ -1,17 +1,21 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const csv = require('csv-parser');
+const Result = require('./schema'); // Import the schema from the file
 
-
+let percentage = 0;
+let scrapeStartDate = "";
 async function scrapFunction(givenDate) {
     var newLine = '\r\n';
     var result = {};
     let results = [];
     let count = 0;
+    let keyCount = 0;
+    scrapeStartDate = givenDate;
 
     // Do something with the submitted data (e.g., save it to a database)
     async function handleScraping() {
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 30; i++) {
 
             const newDate = new Date(givenDate + "-01");
             newDate.setDate(newDate.getDate() + i);
@@ -127,6 +131,9 @@ async function scrapFunction(givenDate) {
                             const fullLocation = row[4];
                             const link = row[2];
                             console.log("search key >>>>>> ", searchKey);
+                            keyCount = keyCount + 1;
+                            percentage = keyCount
+                            console.log("percentage: ", keyCount);
     
                             await fetch("https://www.avis.com/webapi/reservation/vehicles", {
                                 "headers": {
@@ -177,23 +184,27 @@ async function scrapFunction(givenDate) {
                                             payLaterAmount = info.payLaterRate.amount;
                                             payLaterTotalAmount = info.payLaterRate.totalRateAmount;
 
-                                            // countNum = countNum + 1;
-
-                                            // csvRow[num] = searchKey+', '+carName+', '+carDesc+', '+startDate+', '+endDate+', '+payLaterAmount+', '+payLaterTotalAmount+', '+state+', '+city+', '+fullLocation+', '+link;
-                                            // const fields = ['Code', 'Name', 'Type', 'From', 'To', 'PayLater', 'PayLaterTotal', 'State', 'City', 'FullLocation', 'URL']
-                                            // const resultFileName = "Avis"+givenDate+".csv";
-                                            // fs.stat(resultFileName, function (err, stat) {
-                                            //     fs.appendFile(resultFileName, csvRow[num]+newLine, function (err) {
-                                            //         if (err) throw err;
-                                            //         console.log('The data was appended to file!');
-                                            //     });
-                                            // });
-
                                             // Create a new instance of the Result model
                                             result = { Code: searchKey, CarName:carName, Type:carDesc, From:startDate, To:endDate, PayLater:payLaterAmount,  PayLaterTotal:payLaterTotalAmount, State:state, City:city, FullLocation:fullLocation, URL:link };
-                                            // console.log("result >>> ", result);
-                                            results[count] = result;
-                                            count = count + 1;
+                                            csvRow[num] = searchKey+', '+carName+', '+carDesc+', '+startDate+', '+endDate+', '+payLaterAmount+', '+payLaterTotalAmount+', '+state+', '+city+', '+fullLocation+', '+link;
+                                            const resultFileName = "./Result/Avis"+givenDate+".csv";
+                                            // // console.log("result >>> ", result);
+                                            // const scrapResult = new Result(result);
+                                        
+                                            // scrapResult.save()
+                                            //     .then (() => {
+                                            //         console.log("data saved successfully!");
+                                            //     })
+                                            //     .catch (() => {
+                                            //         console.log("save error!");
+                                            //     })
+                                            // count = count + 1;
+
+                                            fs.appendFile(resultFileName, csvRow[num]+newLine, function (err) {
+                                                if (err) throw err;
+                                                console.log('The "data to append" was appended to file!');
+                                            });
+
                                             
                                         }
                                     }
@@ -209,7 +220,7 @@ async function scrapFunction(givenDate) {
     
                 }
     
-                const files = './avisTest.csv';
+                const files = './avisLocation.csv';
                 await processFilesSequentially(files);
 
                 await browser.close();
@@ -244,13 +255,18 @@ async function scrapFunction(givenDate) {
     // date setting
     await handleScraping().then(res => {
         console.log('handle scraping have done!!')
-        console.log("results>>>>>>>>>>>>>>>>>>>>>>>>> ", results);
+        // console.log("results>>>>>>>>>>>>>>>>>>>>>>>>> ", results);
     })
-    
-    return results;
 
+    return "Scraping was completed successfully!";
+
+}
+
+function percentFunction() {
+    return {percentage, scrapeStartDate}
 }
 
 module.exports = {
     scrapFunction,
+    percentFunction,
 }
