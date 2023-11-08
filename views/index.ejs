@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Avis script</title>
+    <title>long term car rentals</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Agbalumo?preview.text=Long%20Term%20Car%20Rentals%0A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
     :root {
-        background: #f5f6fa;
-        color: #9c9c9c;
-        font: 1rem "PT Sans", sans-serif;
+        background: transparent;
+        color: #ffffff;
+        font: 1.5rem "PT Sans", sans-serif;
     }
 
     html,
     body,
     .container {
         height: 100%;
+        font-family: Agbalumo;
     }
 
     a {
@@ -51,37 +56,41 @@
     }
 
     .btn--primary {
-        background: #7f8ff4;
+        background: #26aaf3;
         color: #fff;
-        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-        border-radius: 2px;
-        padding: 12px 36px;
+        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.45) inset; */
+        padding: 10px 16px;
+        border-radius: 37px;
+        position: absolute;
+        margin-top: 6px;
     }
 
     .btn--primary:hover {
-        background: #6c7ff2;
+        background: #2091ce;
     }
 
     .btn--primary:active {
-        background: #7f8ff4;
+        background: #2091ce;
         box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
     }
 
     .btn--inside {
-        margin-left: -96px;
+        margin-left: -110px;
     }
 
     .form__field {
-        width: 360px;
+        width: 500px;
         background: #fff;
-        color: #a3a3a3;
+        color: #5e5d5d;
         font: inherit;
-        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
         border: 0;
-        border-radius: 30px;
+        border-radius: 50px;
         outline: 0;
-        padding: 22px 18px;
+        padding: 12px 36px;
+        font-size: 30px;
         font-weight: bold;
+        position: relative;
     }
 
     .circle {
@@ -95,7 +104,7 @@
     }
 
     #progressBar {
-        background-image: conic-gradient(#00ab15 0%, #cccccc 0);
+        background-image: conic-gradient(#00ab15 0%, #cccccc00 0);
     }
 
     .circle .inner {
@@ -112,7 +121,7 @@
         border-radius: 50%;
         font-size: 1.85em;
         font-weight: 300;
-        color: #9c9c9c
+        color: #5b5a5a
     }
 
     /* #submitData:focus {
@@ -363,7 +372,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 
-/* link-... */
+/* link-. . . */
 .link-1 {
   font-size: 1rem;
     font-weight: bold;
@@ -429,19 +438,41 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   color: hsla(0, 0%, 1000%, .6);
   font-size: 1.6rem;
 }
+input::placeholder {
+    color: rgb(184, 182, 182);
+}
 #titleText {
-  color: #333;
-  -webkit-text-stroke: 1px #282828;
-  text-shadow: 0px 4px 4px #282828;
+  /* color: #333; */
+  /* -webkit-text-stroke: 1px #282828; */
+  /* text-shadow: 0px 4px 4px #282828; */
+  text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
   padding-bottom: 50px;
 }
 #statusText {
     padding: 30px 0px;
+    text-shadow: -1px -1px 3px #020202, 
+      2px 2px 4px #1b1b1b;
+}
+.imgurl{
+    background-image: url('background-large.jpg');
+    background-size: cover;
+    background-position: center;
 }
 </style>
-<body>
+<body class="imgurl">
 <div class="container">
-    <h1 id="titleText" style="font-size: 70px;">Avis</h1>
+    <h1 id="titleText" style="font-size: 90px; font-family: Agbalumo;">Long-term Car Rentals</h1>
     <div class="container__item">
         <form class="form" id="myForm">
             <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01"/>
@@ -489,7 +520,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     function checkFileAndSubmit() {
         startDate = document.getElementById('submitData').value;
         startFileName = "Avis"+startDate+".csv";
-        console.log("submit file >>> ", startFileName);
+        // console.log("submit file >>> ", startFileName);
         // window.location.href = `/${startFileName}`;
 
 
@@ -508,23 +539,28 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         });
     }
     const updatePercentage = (count, scrapeStartDate) => {
-        console.log("count >>> ", count);
+        // console.log("count >>> ", count);
         document.getElementById("progressBar").style.backgroundImage = "conic-gradient(#00ab15 " + count + "%, #cccccc 0)";
         document.getElementById("progressText").innerHTML = count + "%";
         if (count == "100") {
             document.getElementById("download").style.visibility = "visible";
             document.getElementById("progressText").style.color = "#00ab15";
             document.getElementById("statusText").innerHTML = "scraping done successfully!";
+            document.getElementById("submitData").style.cursor = "text";
+            document.getElementById("submitData").disabled = false;
             
         } else if (count != "0") {
-            document.getElementById("statusText").innerHTML = "scraping now for "+ scrapeStartDate +" ...";
+            document.getElementById("statusText").innerHTML = "scraping now for "+ scrapeStartDate +" . . .";
+            document.getElementById("submitData").style.cursor = "not-allowed";
+            document.getElementById("submitData").disabled = true;
+
         }
         else {
             document.getElementById("download").style.visibility = "hidden";
             document.getElementById("progressText").style.color = "#9c9c9c";
         }
         fileName = "Avis"+scrapeStartDate+".csv";
-        console.log("download link : ", fileName);
+        // console.log("download link : ", fileName);
         document.getElementById("downloadLink").href = "/"+fileName;
     }
 
@@ -535,13 +571,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
         })
             .then(res => {
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", res);
+                // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", res);
                 let percentage = res.data.percentageCount
                 if (percentage) {
-                    console.log("disable >>>>>>>>", percentage);
-                    document.getElementById("submitData").disabled = true;
-                    document.getElementById("submitData").style.cursor = "not-allowed";
-                    document.getElementById("statusText").innerHTML = "scraping now for "+ res.data.scrapeStartDate +" ...";
+                    // console.log("disable >>>>>>>>", percentage);
+                    // document.getElementById("submitData").disabled = true;
+                    // document.getElementById("submitData").style.cursor = "not-allowed";
+                    document.getElementById("statusText").innerHTML = "scraping now for "+ res.data.scrapeStartDate +" . . .";
 
                 }
                 percentage = (Number(percentage)/63180*100).toFixed(0);
@@ -584,10 +620,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
         name = input.value;
         if (name) {
-            console.log("input data: ", name);
+            // console.log("input data: ", name);
             const data = {'data': name};
             
-            document.getElementById("statusText").innerHTML = "scraping now for "+name+" ...";
+            document.getElementById("statusText").innerHTML = "scraping now for "+name+" . . .";
     
             axios.post('/submit', data, {
                 headers: {
@@ -596,8 +632,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             })
                 .then(response => {
                     // Handle the response data
-                    console.log(response.data);
-                    // document.getElementById("statusText").innerHTML = "scraping now ...";
+                    // console.log(response.data);
+                    // document.getElementById("statusText").innerHTML = "scraping now . . .";
                 })
                 .catch(error => {
                     // Handle any errors
@@ -609,26 +645,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     };
     const downloadFuction = () => {
         // const fileName = "Avis"+document.getElementById('submitData').value+".csv";
-        console.log("download file --> ", startFileName);
+        // console.log("download file --> ", startFileName);
 
         window.location.href = "/";
         window.location.href = `/${startFileName}`;
+        document.getElementById("download").style.visibility = "hidden";
+
     }
-    // function downloadFuction() {
-    //     console.log("download started .............................................");
-    //     const data = {data: "Hello"};
-    //     // axios.get('/download', fileName, {
-    //     //     headers: {
-    //     //         'Content-Type': 'application/json'
-    //     //     }
-    //     // })
-    //     //     .then(res => {
-    //     //         document.getElementById("downloadLink").href = fileName;
-    //     //         console.log("Database download successfully!");
-                
-    //     //     })
-    //     //     .catch(err => {
-    //     //     })
-    // }
+    
 </script>
 </html>

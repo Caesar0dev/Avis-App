@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const csv = require('csv-parser');
-const Result = require('./schema'); // Import the schema from the file
+const Result = require('./schema');
+const { Parser } = require('json2csv');
 
 let percentage = 0;
 let scrapeStartDate = "";
@@ -24,9 +25,9 @@ async function scrapFunction(givenDate) {
             newDate.setDate(newDate.getDate() + 330);
             const endDate = newDate.toISOString().split('T')[0];
             const end_date = endDate.split("-")[1] + "/" + endDate.split("-")[2] + "/" + endDate.split("-")[0];
-            console.log("start date >>> ", start_date);
-            console.log("end date >>> ", end_date);
-            console.log("----------------------");
+            // console.log("start date >>> ", start_date);
+            // console.log("end date >>> ", end_date);
+            // console.log("----------------------");
 
             let Digital_Token = null;
             let RecaptchaResponse = null;
@@ -129,8 +130,9 @@ async function scrapFunction(givenDate) {
                             const state = row[0];
                             const city = row[1];
                             const fullLocation = row[4];
+                            // console.log("fullLocation >>> ", fullLocation);
                             const link = row[2];
-                            console.log("search key >>>>>> ", searchKey);
+                            // console.log("search key >>>>>> ", searchKey);
                             keyCount = keyCount + 1;
                             percentage = keyCount
                             console.log("percentage: ", keyCount);
@@ -186,23 +188,30 @@ async function scrapFunction(givenDate) {
 
                                             // Create a new instance of the Result model
                                             result = { Code: searchKey, CarName:carName, Type:carDesc, From:startDate, To:endDate, PayLater:payLaterAmount,  PayLaterTotal:payLaterTotalAmount, State:state, City:city, FullLocation:fullLocation, URL:link };
-                                            csvRow[num] = searchKey+', '+carName+', '+carDesc+', '+startDate+', '+endDate+', '+payLaterAmount+', '+payLaterTotalAmount+', '+state+', '+city+', '+fullLocation+', '+link;
-                                            const resultFileName = "./Result/Avis"+givenDate+".csv";
-                                            // // console.log("result >>> ", result);
-                                            // const scrapResult = new Result(result);
-                                        
-                                            // scrapResult.save()
-                                            //     .then (() => {
-                                            //         console.log("data saved successfully!");
-                                            //     })
-                                            //     .catch (() => {
-                                            //         console.log("save error!");
-                                            //     })
-                                            // count = count + 1;
+                                            // csvRow[num] = searchKey+', '+carName+', '+carDesc+', '+startDate+', '+endDate+', '+payLaterAmount+', '+payLaterTotalAmount+', '+state+', '+city+', '+'"'+fullLocation+'"'+', '+link;
+                                            // const resultFileName = "./Result/Avis"+givenDate+".csv";
+                                            
+                                            // fs.appendFile(resultFileName, csvRow[num]+newLine, function (err) {
+                                            //     if (err) throw err;
+                                            //     // console.log('The "data to append" was appended to file!');
+                                            // });
+                                            
+                                            const appendData = { 'Code': searchKey, 'CarName':carName, 'Type':carDesc, 'From':startDate, 'To':endDate, 'PayLater':payLaterAmount,  'PayLaterTotal':payLaterTotalAmount, 'State':state, 'City':city, 'FullLocation':fullLocation, 'URL':link };
 
-                                            fs.appendFile(resultFileName, csvRow[num]+newLine, function (err) {
-                                                if (err) throw err;
-                                                console.log('The "data to append" was appended to file!');
+                                        
+                                            const parser = new Parser();
+                                            const csv = parser.parse(appendData);
+                                        
+                                            const csvDataWithoutHeader = csv.split('\n')[1] + '\n';
+                                            // console.log("csvDataWithoutHeader >>> ", csvDataWithoutHeader);
+                                            const resultFileName = "./Result/Avis"+givenDate+".csv";
+                                            
+                                            fs.appendFileSync(resultFileName, csvDataWithoutHeader, 'utf8', (err) => {
+                                                if (err) {
+                                                    console.error('Error appending to CSV file:', err);
+                                                } else {
+                                                    console.log('CSV data appended successfully.');
+                                                }
                                             });
 
                                             

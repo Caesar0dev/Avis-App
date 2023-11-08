@@ -12,6 +12,9 @@
 # production
 /build
 
+# result files
+/Result
+
 # misc
 .env
 .DS_Store
