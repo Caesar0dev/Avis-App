@@ -14,7 +14,24 @@ async function scrapFunction(givenDate) {
     let keyCount = 0;
     scrapeStartDate = givenDate;
 
+    let appendHeader = {'Code':"Code", 'City':"City", 'State':"State", 'Address':"Address", 'Class':"Class", 'Vehicle type':"Vehicle", 'Date From':"Start", 'Date To':"End", 'Total(pay now)':"Pay Now", 'Total(pay later)':"Pay Later", 'Link':"Reserve"};
+
+                                        
+    let parser = new Parser();
+    let headerData = parser.parse(appendHeader);
+
+    let csvHeader = headerData.split('\n')[1] + '\n';
+    let resultFileName = "./Result/Avis"+givenDate+".csv";
+    
+    fs.appendFileSync(resultFileName, csvHeader, 'utf8', (err) => {
+        if (err) {
+            console.error('Error appending to CSV file:', err);
+        } else {
+            console.log('CSV header appended successfully.');
+        }
+    });
     // Do something with the submitted data (e.g., save it to a database)
+
     async function handleScraping() {
         for (let i = 0; i < 30; i++) {
 
@@ -37,6 +54,8 @@ async function scrapFunction(givenDate) {
             let carDesc = "";
             let payLaterAmount = "";
             let payLaterTotalAmount = "";
+            let payNowAmount = "";
+            let payNowTotalAmount = "";
             let csvRow = [];
             let writeData = [];
 
@@ -127,9 +146,23 @@ async function scrapFunction(givenDate) {
                         const data = await readFileSequentially(filePaths);
                         for (const row of data) {
                             const searchKey = row[3];
-                            const state = row[0];
-                            const city = row[1];
+                            // const state = row[0];
+                            // const city = row[1];
                             const fullLocation = row[4];
+                            const locationElements = fullLocation.split(",");
+                            const elementNum = locationElements.length;
+                            const location = locationElements[elementNum-5]+locationElements[elementNum-4]+locationElements[elementNum-3]+locationElements[elementNum-2]+locationElements[elementNum-1];
+                            const street = locationElements[elementNum-5];
+                            const city = locationElements[elementNum-3];
+                            const state = locationElements[elementNum-4];
+
+
+
+
+                            // const removeLocation = fullLocation.split(",")[0];
+                            // const dispalyLocation = fullLocation.replace(removeLocation, "");
+                            // const location = dispalyLocation.replace(",", "");
+                            // const street = location.split(",")[0];
                             // console.log("fullLocation >>> ", fullLocation);
                             const link = row[2];
                             // console.log("search key >>>>>> ", searchKey);
@@ -179,12 +212,22 @@ async function scrapFunction(givenDate) {
                                     for (let num = 0; num < infos.length; num++) {
                                         const info = infos[num];
                                         if (info.payLaterRate) {
-                                            carName = info.make;
+
+                                            // console.log("info >>> ", info);
+                                            // carName = info.make;
+                                            carName = info.carGroup;
                                             // console.log("car name --> ", carName);
                                             carDesc = info.makeModel;
                                             // console.log("car desc --> ", carDesc);
                                             payLaterAmount = info.payLaterRate.amount;
                                             payLaterTotalAmount = info.payLaterRate.totalRateAmount;
+                                            if (info.payNowRate) {
+                                                payNowAmount = info.payNowRate.amount;
+                                                payNowTotalAmount = info.payNowRate.totalRateAmount;
+                                            }
+                                            else {
+                                                payNowTotalAmount = "";
+                                            }
 
                                             // Create a new instance of the Result model
                                             result = { Code: searchKey, CarName:carName, Type:carDesc, From:startDate, To:endDate, PayLater:payLaterAmount,  PayLaterTotal:payLaterTotalAmount, State:state, City:city, FullLocation:fullLocation, URL:link };
@@ -196,15 +239,15 @@ async function scrapFunction(givenDate) {
                                             //     // console.log('The "data to append" was appended to file!');
                                             // });
                                             
-                                            const appendData = { 'Code': searchKey, 'CarName':carName, 'Type':carDesc, 'From':startDate, 'To':endDate, 'PayLater':payLaterAmount,  'PayLaterTotal':payLaterTotalAmount, 'State':state, 'City':city, 'FullLocation':fullLocation, 'URL':link };
+                                            // const appendData = { 'Code': searchKey, 'CarName':carName, 'Type':carDesc, 'From':startDate, 'To':endDate, 'PayLater':payLaterAmount,  'PayLaterTotal':payLaterTotalAmount, 'State':state, 'City':city, 'FullLocation':fullLocation, 'URL':link };
+                                            const appendData = {'Code':searchKey, 'City':city, 'State':state, 'Address':location, 'Class':carName, 'Vehicle type':carDesc, 'Date From':startDate, 'Date To':endDate, 'Total(pay now)':payNowTotalAmount, 'Total(pay later)':payLaterTotalAmount, 'Link':link};
 
                                         
-                                            const parser = new Parser();
+                                            // const parser = new Parser();
                                             const csv = parser.parse(appendData);
                                         
                                             const csvDataWithoutHeader = csv.split('\n')[1] + '\n';
-                                            // console.log("csvDataWithoutHeader >>> ", csvDataWithoutHeader);
-                                            const resultFileName = "./Result/Avis"+givenDate+".csv";
+                                            // const resultFileName = "./Result/Avis"+givenDate+".csv";
                                             
                                             fs.appendFileSync(resultFileName, csvDataWithoutHeader, 'utf8', (err) => {
                                                 if (err) {

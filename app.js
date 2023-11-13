@@ -36,8 +36,6 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('Result'));
-// app.use(express.static(path.join(__dirname, 'public')));
-// Set the view engine to EJS
 app.set('view engine', 'ejs');
 
 // Define a route for the homepage
@@ -48,10 +46,7 @@ app.get('/', (req, res) => {
 
 app.get('/getpercentage', (req, res) => {
     let percentageCount = percentFunction().percentage;
-    // console.log("res --->>> ", percentFunction());
     let scrapeStartDate = percentFunction().scrapeStartDate;
-    // percentage = (Number(percentage)/63180*100).toFixed(0);
-    // percentage = percentage.toString();
 
     res.send({percentageCount, scrapeStartDate});
 });
@@ -67,14 +62,11 @@ app.get('/download', (req, res) => {
 app.post('/submit', (req, res) => {
     async function ReceiveSubmit() {
         const givenDate = req.body.data;
-        // console.log("submitted data in backend: ",givenDate);
     
         const scrapResult = await scrapFunction(givenDate);
-        // console.log("scraped results >>> ", scrapResult);
     
         // Send a response back to the frontend
         res.send(scrapResult);
-
     }
 
     ReceiveSubmit();

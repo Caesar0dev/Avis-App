@@ -8,12 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
     :root {
         background: transparent;
-        color: #ffffff;
+        color: #333;
         font: 1.5rem "PT Sans", sans-serif;
     }
 
@@ -21,7 +24,7 @@
     body,
     .container {
         height: 100%;
-        font-family: Agbalumo;
+        font-family: Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly;
     }
 
     a {
@@ -57,7 +60,7 @@
 
     .btn--primary {
         background: #26aaf3;
-        color: #fff;
+        /* color: #fff; */
         /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.45) inset; */
         padding: 10px 16px;
         border-radius: 37px;
@@ -83,13 +86,14 @@
         background: #fff;
         color: #5e5d5d;
         font: inherit;
-        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
+        /* box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5); */
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
         border: 0;
         border-radius: 50px;
         outline: 0;
         padding: 12px 36px;
         font-size: 30px;
-        font-weight: bold;
+        font-weight: 100;
         position: relative;
     }
 
@@ -120,7 +124,7 @@
         background: #ffffff;
         border-radius: 50%;
         font-size: 1.85em;
-        font-weight: 300;
+        font-weight: 100;
         color: #5b5a5a
     }
 
@@ -148,7 +152,7 @@
         fill: currentcolor;
         font-family: "Google Sans",Roboto,Arial,sans-serif;
         font-size: 14px;
-        font-weight: 500;
+        /* font-weight: 500; */
         height: 48px;
         justify-content: center;
         letter-spacing: .25px;
@@ -269,7 +273,7 @@ button::-moz-focus-inner {
 
 .box__title {
   font-size: 10rem;
-  font-weight: normal;
+  /* font-weight: normal; */
   letter-spacing: .8rem;
   margin-bottom: 2.6rem;
 }
@@ -375,7 +379,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 /* link-. . . */
 .link-1 {
   font-size: 1rem;
-    font-weight: bold;
+    /* font-weight: bold; */
   /* color: var(--light); */
   /* background: var(--background); */
   box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
@@ -461,18 +465,18 @@ input::placeholder {
 }
 #statusText {
     padding: 30px 0px;
-    text-shadow: -1px -1px 3px #020202, 
-      2px 2px 4px #1b1b1b;
+    /* text-shadow: -1px -1px 3px #020202, 
+      2px 2px 4px #1b1b1b; */
 }
 .imgurl{
-    background-image: url('background-large.jpg');
+    /* background-image: url('background-large.jpg'); */
     background-size: cover;
     background-position: center;
 }
 </style>
 <body class="imgurl">
 <div class="container">
-    <h1 id="titleText" style="font-size: 90px; font-family: Agbalumo;">Long-term Car Rentals</h1>
+    <h1 id="titleText" style="font-size: 70px; font-family: Agbalumo; font-weight: lighter;">Car Rentals</h1>
     <div class="container__item">
         <form class="form" id="myForm">
             <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01"/>
@@ -485,7 +489,7 @@ input::placeholder {
         <button class="custom-search-botton" type="button">Subscribe</button>
     </div> -->
     <!-- <h1><%= message %></h1> -->
-    <h1 id="statusText">Welcome to my application.</h1>
+    <h1 id="statusText" style="font-weight: lighter; font-size: 40px;">Welcome to my application.</h1>
     <div class="wrap-circles">
         <div class="circle per-25" id="progressBar">
             <div class="inner" id="progressText">0%</div>
@@ -545,14 +549,15 @@ input::placeholder {
         if (count == "100") {
             document.getElementById("download").style.visibility = "visible";
             document.getElementById("progressText").style.color = "#00ab15";
-            document.getElementById("statusText").innerHTML = "scraping done successfully!";
+            document.getElementById("statusText").innerHTML = "Scrapped for " + scrapeStartDate;
             document.getElementById("submitData").style.cursor = "text";
             document.getElementById("submitData").disabled = false;
             
         } else if (count != "0") {
-            document.getElementById("statusText").innerHTML = "scraping now for "+ scrapeStartDate +" . . .";
+            document.getElementById("statusText").innerHTML = "Scraping now for "+ scrapeStartDate;
             document.getElementById("submitData").style.cursor = "not-allowed";
             document.getElementById("submitData").disabled = true;
+            document.getElementById("download").style.visibility = "hidden";
 
         }
         else {
@@ -577,7 +582,7 @@ input::placeholder {
                     // console.log("disable >>>>>>>>", percentage);
                     // document.getElementById("submitData").disabled = true;
                     // document.getElementById("submitData").style.cursor = "not-allowed";
-                    document.getElementById("statusText").innerHTML = "scraping now for "+ res.data.scrapeStartDate +" . . .";
+                    document.getElementById("statusText").innerHTML = "Scraping now for "+ res.data.scrapeStartDate;
 
                 }
                 percentage = (Number(percentage)/63180*100).toFixed(0);
@@ -623,7 +628,7 @@ input::placeholder {
             // console.log("input data: ", name);
             const data = {'data': name};
             
-            document.getElementById("statusText").innerHTML = "scraping now for "+name+" . . .";
+            document.getElementById("statusText").innerHTML = "Scraping now for "+name;
     
             axios.post('/submit', data, {
                 headers: {
