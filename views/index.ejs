@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="https://fonts.google.com/specimen/Agbalumo?preview.text=Long%20Term%20Car%20Rentals%0A">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant+Garamond:wght@300&family=Dancing+Script:wght@700&family=Gothic+A1:wght@900&family=Gruppo&family=Inter:wght@900&family=Lato:ital,wght@0,400;1,900&family=Montserrat:wght@100;200;400;700&family=Poppins:ital@1&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon-16x16.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
@@ -78,7 +76,7 @@
     }
 
     .btn--inside {
-        margin-left: -110px;
+        margin-left: -113px;
     }
 
     .form__field {
@@ -476,20 +474,17 @@ input::placeholder {
 </style>
 <body class="imgurl">
 <div class="container">
-    <h1 id="titleText" style="font-size: 70px; font-family: Agbalumo; font-weight: lighter;">Car Rentals</h1>
+    <!-- <h1 id="titleText" style="font-size: 70px; font-family: Agbalumo; font-weight: lighter;">Car Rentals</h1> -->
+    <h1 id="titleText" style="font-size: 70px; font-family: Gruppo; font-weight: bold;">Car Rentals</h1>
     <div class="container__item">
         <form class="form" id="myForm">
-            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01"/>
+            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01" style="font-family: Roboto;"/>
             <!-- <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button> -->
-            <button type="button" class="btn btn--primary btn--inside uppercase" onclick="checkFileAndSubmit()">Start</button>
+            <button type="button" id="startButton" class="btn btn--primary btn--inside uppercase" style="font-family: Roboto; font-weight: 900; color: white;" onclick="checkFileAndSubmit()">Start</button>
         </form>
     </div>
-    <!-- <div class="custom-search">
-        <input type="text" class="custom-search-input" placeholder="Enter your email">
-        <button class="custom-search-botton" type="button">Subscribe</button>
-    </div> -->
     <!-- <h1><%= message %></h1> -->
-    <h1 id="statusText" style="font-weight: lighter; font-size: 40px;">Welcome to my application.</h1>
+    <h1 id="statusText" style="font-family: Gruppo; font-weight: lighter; font-size: 40px;">Welcome to my application.</h1>
     <div class="wrap-circles">
         <div class="circle per-25" id="progressBar">
             <div class="inner" id="progressText">0%</div>
@@ -524,6 +519,9 @@ input::placeholder {
     function checkFileAndSubmit() {
         startDate = document.getElementById('submitData').value;
         startFileName = "Avis"+startDate+".csv";
+        document.getElementById('startButton').disabled = true;
+        document.getElementById('startButton').style.cursor = "not-allowed";
+
         // console.log("submit file >>> ", startFileName);
         // window.location.href = `/${startFileName}`;
 
@@ -552,11 +550,18 @@ input::placeholder {
             document.getElementById("statusText").innerHTML = "Scrapped for " + scrapeStartDate;
             document.getElementById("submitData").style.cursor = "text";
             document.getElementById("submitData").disabled = false;
+            document.getElementById('startButton').disabled = false;
+            document.getElementById('startButton').style.cursor = "pointer";
+
+
             
         } else if (count != "0") {
             document.getElementById("statusText").innerHTML = "Scraping now for "+ scrapeStartDate;
             document.getElementById("submitData").style.cursor = "not-allowed";
             document.getElementById("submitData").disabled = true;
+            document.getElementById('startButton').disabled = true;
+            document.getElementById('startButton').style.cursor = "not-allowed";
+
             document.getElementById("download").style.visibility = "hidden";
 
         }
@@ -585,7 +590,7 @@ input::placeholder {
                     document.getElementById("statusText").innerHTML = "Scraping now for "+ res.data.scrapeStartDate;
 
                 }
-                percentage = (Number(percentage)/63180*100).toFixed(0);
+                percentage = (Number(percentage)/63210*100).toFixed(0);
                 percentage = percentage.toString();
                 console.log("percentage >>> ", percentage);
                 updatePercentage(percentage, res.data.scrapeStartDate);

@@ -1,4 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -6,14 +5,16 @@
 # package
 /package-lock.json
 
+# Result
+
+
 # testing
-/coverage
-
-# production
-/build
-
-# result files
-/Result
+/views/index1.ejs
+/app1.js
+/avisTest.csv
+/schema.js
+/scrape1.js
+/test1.js
 
 # misc
 .env
