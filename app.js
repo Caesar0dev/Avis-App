@@ -1,36 +1,36 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const puppeteer = require("puppeteer");
-const csv = require("csv-parser");
-const mongoose = require("mongoose");
-const mongoURL = "mongodb://localhost:27017/Avis"; // Replace with your MongoDB connection string and database name
+// const puppeteer = require("puppeteer");
+// const csv = require("csv-parser");
+// const mongoose = require("mongoose");
+// const mongoURL = "mongodb://localhost:27017/Avis"; // Replace with your MongoDB connection string and database name
 const fs = require("fs");
-const Result = require("./schema"); // Import the schema from the file
+// const Result = require("./schema"); // Import the schema from the file
 // const { receiveMessageOnPort } = require('worker_threads');
 const scrapFunction = require("./scrape").scrapFunction;
 const percentFunction = require("./scrape").percentFunction;
-const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+// const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const path = require("path");
 // const Json2csvParser = require("json2csv").Parser;
 // const ExcelJS = require('exceljs');
 
-// Connect to the MongoDB database
-mongoose
-  .connect(mongoURL, {
-    // useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useFindAndModify: false,
-    // useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error(error.message);
-    // Exit process with failure
-    process.exit(1);
-  });
+// // Connect to the MongoDB database
+// mongoose
+//   .connect(mongoURL, {
+//     // useNewUrlParser: true,
+//     // useCreateIndex: true,
+//     // useFindAndModify: false,
+//     // useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("Connected to MongoDB");
+//   })
+//   .catch((error) => {
+//     console.error(error.message);
+//     // Exit process with failure
+//     process.exit(1);
+//   });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

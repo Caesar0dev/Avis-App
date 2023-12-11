@@ -1,129 +1,143 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>long term car rentals</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
-    <link rel="stylesheet" href="https://fonts.google.com/specimen/Agbalumo?preview.text=Long%20Term%20Car%20Rentals%0A">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant+Garamond:wght@300&family=Dancing+Script:wght@700&family=Gothic+A1:wght@900&family=Gruppo&family=Inter:wght@900&family=Lato:ital,wght@0,400;1,900&family=Montserrat:wght@100;200;400;700&family=Poppins:ital@1&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=PT+Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato:300"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.google.com/specimen/Agbalumo?preview.text=Long%20Term%20Car%20Rentals%0A"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant+Garamond:wght@300&family=Dancing+Script:wght@700&family=Gothic+A1:wght@900&family=Gruppo&family=Inter:wght@900&family=Lato:ital,wght@0,400;1,900&family=Montserrat:wght@100;200;400;700&family=Poppins:ital@1&family=Roboto:wght@900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="/favicon-16x16.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<style>
+  </head>
+  <style>
     :root {
-        background: transparent;
-        color: #333;
-        font: 1.5rem "PT Sans", sans-serif;
+      background: transparent;
+      color: #333;
+      font: 1.5rem "PT Sans", sans-serif;
     }
 
     html,
     body,
     .container {
-        height: 100%;
-        font-family: Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly;
+      height: 100%;
+      font-family: Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral,
+        Jacques Le Bailly;
     }
 
     a {
-        color: inherit;
+      color: inherit;
     }
 
     a:hover {
-        color: #7f8ff4;
+      color: #7f8ff4;
     }
 
     .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .uppercase {
-        text-transform: uppercase;
+      text-transform: uppercase;
     }
 
     .btn {
-        display: inline-block;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-        border: 0;
-        outline: 0;
-        padding: 0;
-        transition: all 200ms ease-in;
-        cursor: pointer;
+      display: inline-block;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      border: 0;
+      outline: 0;
+      padding: 0;
+      transition: all 200ms ease-in;
+      cursor: pointer;
     }
 
     .btn--primary {
-        background: #26aaf3;
-        /* color: #fff; */
-        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.45) inset; */
-        padding: 10px 16px;
-        border-radius: 37px;
-        position: absolute;
-        margin-top: 6px;
+      background: #26aaf3;
+      /* color: #fff; */
+      /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.45) inset; */
+      padding: 10px 16px;
+      border-radius: 37px;
+      position: absolute;
+      margin-top: 6px;
     }
 
     .btn--primary:hover {
-        background: #2091ce;
+      background: #2091ce;
     }
 
     .btn--primary:active {
-        background: #2091ce;
-        box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+      background: #2091ce;
+      box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
     }
 
     .btn--inside {
-        margin-left: -113px;
+      margin-left: -113px;
     }
 
     .form__field {
-        width: 500px;
-        background: #fff;
-        color: #5e5d5d;
-        font: inherit;
-        /* box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5); */
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-        border: 0;
-        border-radius: 50px;
-        outline: 0;
-        padding: 12px 36px;
-        font-size: 30px;
-        font-weight: 100;
-        position: relative;
+      width: 500px;
+      background: #fff;
+      color: #5e5d5d;
+      font: inherit;
+      /* box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5); */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
+        rgb(51, 51, 51) 0px 0px 0px 3px;
+      border: 0;
+      border-radius: 50px;
+      outline: 0;
+      padding: 12px 36px;
+      font-size: 30px;
+      font-weight: 100;
+      position: relative;
     }
 
     .circle {
-        position: relative;
-        width: 150px;
-        height: 150px;
-        margin: 0.5rem;
-        border-radius: 50%;
-        background: #FFCDB2;
-        overflow: hidden;
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0.5rem;
+      border-radius: 50%;
+      background: #ffcdb2;
+      overflow: hidden;
     }
 
     #progressBar {
-        background-image: conic-gradient(#00ab15 0%, #cccccc00 0);
+      background-image: conic-gradient(#00ab15 0%, #cccccc00 0);
     }
 
     .circle .inner {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 115px;
-        height: 115px;
-        background: #ffffff;
-        border-radius: 50%;
-        font-size: 1.85em;
-        font-weight: 100;
-        color: #5b5a5a
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 115px;
+      height: 115px;
+      background: #ffffff;
+      border-radius: 50%;
+      font-size: 1.85em;
+      font-weight: 100;
+      color: #5b5a5a;
     }
 
     /* #submitData:focus {
@@ -132,384 +146,411 @@
     } */
 
     #download {
-        margin-top: 30px;
-        visibility: hidden;
+      margin-top: 30px;
+      visibility: hidden;
     }
     /* CSS */
     .button-17 {
-        align-items: center;
-        appearance: none;
-        background-color: #fff;
-        border-radius: 24px;
-        border-style: none;
-        box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
-        box-sizing: border-box;
-        color: #3c4043;
-        cursor: pointer;
-        display: inline-flex;
-        fill: currentcolor;
-        font-family: "Google Sans",Roboto,Arial,sans-serif;
-        font-size: 14px;
-        /* font-weight: 500; */
-        height: 48px;
-        justify-content: center;
-        letter-spacing: .25px;
-        line-height: normal;
-        max-width: 100%;
-        overflow: visible;
-        padding: 2px 24px;
-        position: relative;
-        text-align: center;
-        text-transform: none;
-        transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        width: auto;
-        will-change: transform,opacity;
-        z-index: 0;
+      align-items: center;
+      appearance: none;
+      background-color: #fff;
+      border-radius: 24px;
+      border-style: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+      box-sizing: border-box;
+      color: #3c4043;
+      cursor: pointer;
+      display: inline-flex;
+      fill: currentcolor;
+      font-family: "Google Sans", Roboto, Arial, sans-serif;
+      font-size: 14px;
+      /* font-weight: 500; */
+      height: 48px;
+      justify-content: center;
+      letter-spacing: 0.25px;
+      line-height: normal;
+      max-width: 100%;
+      overflow: visible;
+      padding: 2px 24px;
+      position: relative;
+      text-align: center;
+      text-transform: none;
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: auto;
+      will-change: transform, opacity;
+      z-index: 0;
     }
 
     .button-17:hover {
-        background: #F6F9FE;
-        color: #174ea6;
+      background: #f6f9fe;
+      color: #174ea6;
     }
 
     .button-17:active {
-        box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
-        outline: none;
+      box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+        0 8px 12px 6px rgb(60 64 67 / 15%);
+      outline: none;
     }
 
     .button-17:focus {
-        outline: none;
-        border: 2px solid #4285f4;
+      outline: none;
+      border: 2px solid #4285f4;
     }
 
     .button-17:not(:disabled) {
-        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
     }
 
     .button-17:not(:disabled):hover {
-        box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
     }
 
     .button-17:not(:disabled):focus {
-        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
     }
 
     .button-17:not(:disabled):active {
-        box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+        rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
     }
 
     .button-17:disabled {
-        box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
     }
-        /*
-    ================================
-        Best Viewed In Full Page
-    ================================
-*/
+    
+    /* defaults */
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Because I'm using the fixed position for modals, if the screen height is small then you would not be able to see a full modal that's why it's recommended that you see this pen in full-page and not on editor view. */
+    html {
+      font-size: 62.5%;
+    }
 
-/* defaults */
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    body {
+      --light: hsl(220, 50%, 90%);
+      --primary: hsl(255, 30%, 55%);
+      --focus: hsl(210, 90%, 50%);
+      --border-color: hsla(0, 0%, 100%, 0.2);
+      /* --global-background: hsl(220, 25%, 10%); */
+      --background: linear-gradient(
+        to right,
+        hsl(210, 30%, 20%),
+        hsl(255, 30%, 25%)
+      );
+      --shadow-1: hsla(236, 50%, 50%, 0.3);
+      --shadow-2: hsla(236, 50%, 50%, 0.4);
 
-html {
-  font-size: 62.5%;
-}
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans",
+        sans-serif;
+      /* color: var(--light); */
+      background: var(--global-background);
+    }
 
-body {
-  --light: hsl(220, 50%, 90%);
-  --primary: hsl(255, 30%, 55%);
-  --focus: hsl(210, 90%, 50%);
-  --border-color: hsla(0, 0%, 100%, .2);
-  /* --global-background: hsl(220, 25%, 10%); */
-  --background: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%));
-  --shadow-1: hsla(236, 50%, 50%, .3);
-  --shadow-2: hsla(236, 50%, 50%, .4);
+    a,
+    a:link {
+      font-family: inherit;
+      text-decoration: none;
+    }
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', sans-serif;
-  /* color: var(--light); */
-  background: var(--global-background);
-}
+    a:focus {
+      outline: none;
+    }
 
-a,
-a:link {
-  font-family: inherit;
-  text-decoration: none;
-}
+    button::-moz-focus-inner {
+      border: 0;
+    }
 
-a:focus {
-  outline: none;
-}
+    /* box */
+    .box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 0 4rem 2rem;
+    }
 
-button::-moz-focus-inner {
-  border: 0;
-}
+    .box:not(:first-child) {
+      height: 45rem;
+    }
 
+    .box__title {
+      font-size: 10rem;
+      /* font-weight: normal; */
+      letter-spacing: 0.8rem;
+      margin-bottom: 2.6rem;
+    }
 
-/* box */
-.box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 0 4rem 2rem;
-}
+    .box__title::first-letter {
+      color: var(--primary);
+    }
 
-.box:not(:first-child) {
-  height: 45rem;
-}
+    .box__p,
+    .box__info,
+    .box__note {
+      font-size: 1.6rem;
+    }
 
-.box__title {
-  font-size: 10rem;
-  /* font-weight: normal; */
-  letter-spacing: .8rem;
-  margin-bottom: 2.6rem;
-}
+    .box__info {
+      margin-top: 6rem;
+    }
 
-.box__title::first-letter {
-  color: var(--primary);
-}
+    .box__note {
+      line-height: 2;
+    }
 
-.box__p,
-.box__info,
-.box__note {
-  font-size: 1.6rem;
-}
+    /* modal */
+    .modal-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
 
-.box__info {
-  margin-top: 6rem;
-}
+      display: none;
+      justify-content: center;
+      align-items: center;
 
-.box__note {
-  line-height: 2;
-}
+      width: 100%;
+      height: 100%;
 
+      /* --m-background is set as inline style */
+      background: var(--m-background);
+    }
 
-/* modal */
-.modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
+    .modal-container:target {
+      display: flex;
+    }
 
-  display: none;
-  justify-content: center;
-  align-items: center;
+    .modal {
+      width: 60rem;
+      padding: 4rem 2rem;
+      border-radius: 0.8rem;
 
-  width: 100%;
-  height: 100%;
+      color: var(--light);
+      background: var(--background);
+      box-shadow: var(--m-shadow, 0.4rem 0.4rem 10.2rem 0.2rem) var(--shadow-1);
+      position: relative;
 
-  /* --m-background is set as inline style */
-  background: var(--m-background);
-}
+      overflow: hidden;
+    }
 
-/* using :target */
-/*
-when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
-*/
-.modal-container:target {
-  display: flex;
-}
+    .modal__title {
+      font-size: 3.2rem;
+    }
 
-.modal {
-  width: 60rem;
-  padding: 4rem 2rem;
-  border-radius: .8rem;
+    .modal__text {
+      padding: 0 4rem;
+      margin-top: 4rem;
 
-  color: var(--light);
-  background: var(--background);
-  box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
-  position: relative;
+      font-size: 1.6rem;
+      line-height: 2;
+    }
 
-  overflow: hidden;
-}
+    .modal__btn {
+      margin-top: 4rem;
+      padding: 1rem 1.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 100rem;
 
-.modal__title {
-  font-size: 3.2rem;
-}
+      color: inherit;
+      background: transparent;
+      font-size: 1.4rem;
+      font-family: inherit;
+      letter-spacing: 0.2rem;
 
-.modal__text {
-  padding: 0 4rem;
-  margin-top: 4rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
 
-  font-size: 1.6rem;
-  line-height: 2;
-}
+    .modal__btn:nth-of-type(1) {
+      margin-right: 1rem;
+    }
 
-.modal__btn {
-  margin-top: 4rem;
-  padding: 1rem 1.6rem;
-  border: 1px solid var(--border-color);
-  border-radius: 100rem;
+    .modal__btn:hover,
+    .modal__btn:focus {
+      background: var(--focus);
+      border-color: var(--focus);
+      transform: translateY(-0.2rem);
+    }
 
-  color: inherit;
-  background: transparent;
-  font-size: 1.4rem;
-  font-family: inherit;
-  letter-spacing: .2rem;
+    /* link-. . . */
+    .link-1 {
+      font-size: 1rem;
+      /* font-weight: bold; */
+      /* color: var(--light); */
+      /* background: var(--background); */
+      box-shadow: 0.4rem 0.4rem 2.4rem 0.2rem var(--shadow-1);
+      border-radius: 100rem;
+      padding: 1.4rem 1.4rem;
 
-  transition: .2s;
-  cursor: pointer;
-}
+      transition: 0.2s;
+    }
 
-.modal__btn:nth-of-type(1) {
-  margin-right: 1rem;
-}
+    .link-1:hover,
+    .link-1:focus {
+      transform: translateY(-0.2rem);
+      box-shadow: 0 0 4.4rem 0.2rem var(--shadow-2);
+    }
 
-.modal__btn:hover,
-.modal__btn:focus {
-  background: var(--focus);
-  border-color: var(--focus);
-  transform: translateY(-.2rem);
-}
+    .link-1:focus {
+      box-shadow: 0 0 4.4rem 0.2rem var(--shadow-2),
+        0 0 0 0.4rem var(--global-background), 0 0 0 0.5rem var(--focus);
+    }
 
+    .link-2 {
+      width: 4rem;
+      height: 4rem;
+      border: 1px solid var(--border-color);
+      border-radius: 100rem;
 
-/* link-. . . */
-.link-1 {
-  font-size: 1rem;
-    /* font-weight: bold; */
-  /* color: var(--light); */
-  /* background: var(--background); */
-  box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
-  border-radius: 100rem;
-  padding: 1.4rem 1.4rem;
+      color: inherit;
+      font-size: 2.2rem;
 
-  transition: .2s;
-}
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
 
-.link-1:hover,
-.link-1:focus {
-  transform: translateY(-.2rem);
-  box-shadow: 0 0 4.4rem .2rem var(--shadow-2);
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.link-1:focus {
-  box-shadow:
-    0 0 4.4rem .2rem var(--shadow-2),
-    0 0 0 .4rem var(--global-background),
-    0 0 0 .5rem var(--focus);
-}
+      transition: 0.2s;
+    }
 
-.link-2 {
-  width: 4rem;
-  height: 4rem;
-  border: 1px solid var(--border-color);
-  border-radius: 100rem;
+    .link-2::before {
+      content: "×";
 
-  color: inherit;
-  font-size: 2.2rem;
+      transform: translateY(-0.1rem);
+    }
 
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
+    .link-2:hover,
+    .link-2:focus {
+      background: var(--focus);
+      border-color: var(--focus);
+      transform: translateY(-0.2rem);
+    }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: .2s;
-}
-
-.link-2::before {
-  content: '×';
-
-  transform: translateY(-.1rem);
-}
-
-.link-2:hover,
-.link-2:focus {
-  background: var(--focus);
-  border-color: var(--focus);
-  transform: translateY(-.2rem);
-}
-
-.abs-site-link {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  color: hsla(0, 0%, 1000%, .6);
-  font-size: 1.6rem;
-}
-input::placeholder {
-    color: rgb(184, 182, 182);
-}
-#titleText {
-  /* color: #333; */
-  /* -webkit-text-stroke: 1px #282828; */
-  /* text-shadow: 0px 4px 4px #282828; */
-  text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-  padding-bottom: 50px;
-}
-#statusText {
-    padding: 30px 0px;
-    /* text-shadow: -1px -1px 3px #020202, 
+    .abs-site-link {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      color: hsla(0, 0%, 1000%, 0.6);
+      font-size: 1.6rem;
+    }
+    input::placeholder {
+      color: rgb(184, 182, 182);
+    }
+    #titleText {
+      /* color: #333; */
+      /* -webkit-text-stroke: 1px #282828; */
+      /* text-shadow: 0px 4px 4px #282828; */
+      text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+        0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+        0 20px 20px rgba(0, 0, 0, 0.15);
+      padding-bottom: 50px;
+    }
+    #statusText {
+      padding: 30px 0px;
+      /* text-shadow: -1px -1px 3px #020202, 
       2px 2px 4px #1b1b1b; */
-}
-.imgurl{
-    /* background-image: url('background-large.jpg'); */
-    background-size: cover;
-    background-position: center;
-}
-</style>
-<body class="imgurl">
-<div class="container">
-    <!-- <h1 id="titleText" style="font-size: 70px; font-family: Agbalumo; font-weight: lighter;">Car Rentals</h1> -->
-    <h1 id="titleText" style="font-size: 70px; font-family: Gruppo; font-weight: bold;">Car Rentals</h1>
-    <div class="container__item">
+    }
+    .imgurl {
+      /* background-image: url('background-large.jpg'); */
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+  <body class="imgurl">
+    <div class="container">
+      <!-- <h1 id="titleText" style="font-size: 70px; font-family: Agbalumo; font-weight: lighter;">Car Rentals</h1> -->
+      <h1
+        id="titleText"
+        style="font-size: 70px; font-family: Gruppo; font-weight: bold"
+      >
+        Car Rentals
+      </h1>
+      <div class="container__item">
         <form class="form" id="myForm">
-            <input type="text" id="submitData" name="name" class="form__field" placeholder="Start Date, e.g. 2024-01" style="font-family: Roboto;"/>
-            <!-- <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button> -->
-            <button type="button" id="startButton" class="btn btn--primary btn--inside uppercase" style="font-family: Roboto; font-weight: 900; color: white;" onclick="checkFileAndSubmit()">Start</button>
+          <input
+            type="text"
+            id="submitData"
+            name="name"
+            class="form__field"
+            placeholder="Start Date, e.g. 2024-01"
+            style="font-family: Roboto"
+          />
+          <!-- <button type="submit" class="btn btn--primary btn--inside uppercase">Start</button> -->
+          <button
+            type="button"
+            id="startButton"
+            class="btn btn--primary btn--inside uppercase"
+            style="font-family: Roboto; font-weight: 900; color: white"
+            onclick="checkFileAndSubmit()"
+          >
+            Start
+          </button>
         </form>
-    </div>
-    <!-- <h1><%= message %></h1> -->
-    <h1 id="statusText" style="font-family: Gruppo; font-weight: lighter; font-size: 40px;">Welcome to my application.</h1>
-    <div class="wrap-circles">
+      </div>
+      <!-- <h1><%= message %></h1> -->
+      <h1
+        id="statusText"
+        style="font-family: Gruppo; font-weight: lighter; font-size: 40px"
+      >
+        Welcome to my application.
+      </h1>
+      <div class="wrap-circles">
         <div class="circle per-25" id="progressBar">
-            <div class="inner" id="progressText">0%</div>
-        </div>
-    </div>
-    <!-- HTML !-->
-    <a id="downloadLink" href="/Avis2023-12.csv">
-        <button id="download" class="button-17" role="button">Download</button>
-    </a>
-</div>
-
-<!-- <div class="box">    -->
-    <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
-        <div class="modal">
-          <h1 class="modal__title">Warning!</h1>
-          <p class="modal__text" id="modalText">The 2023-12 results file already exists. Would you like to now download an existing file without scraping it? Click the "Download" button to download it. To ignore and scrap again, click the “Ignore” button.</p>
-          <button class="modal__btn" onclick="downloadFuction()">Download &rarr;</button>
-          <button class="modal__btn" onclick="submitFunction()">Ignore &rarr;</button>
-          <a href="/" class="link-2"></a>
+          <div class="inner" id="progressText">0%</div>
         </div>
       </div>
-  <!-- </div> -->
+      <!-- HTML !-->
+      <a id="downloadLink" href="/Avis2023-12.csv">
+        <button id="download" class="button-17" role="button">Download</button>
+      </a>
+    </div>
 
-</body>
-<script>
+    <!-- <div class="box">    -->
+    <div
+      class="modal-container"
+      id="m2-o"
+      style="--m-background: hsla(0, 0%, 0%, 0.4)"
+    >
+      <div class="modal">
+        <h1 class="modal__title">Warning!</h1>
+        <p class="modal__text" id="modalText">
+          The 2023-12 results file already exists. Would you like to now
+          download an existing file without scraping it? Click the "Download"
+          button to download it. To ignore and scrap again, click the “Ignore”
+          button.
+        </p>
+        <button class="modal__btn" onclick="downloadFuction()">
+          Download &rarr;
+        </button>
+        <button class="modal__btn" onclick="submitFunction()">
+          Ignore &rarr;
+        </button>
+        <a href="/" class="link-2"></a>
+      </div>
+    </div>
+    <!-- </div> -->
+  </body>
+  <script>
     let percentageInterval = null;
     let count = 0;
     let name = "";
@@ -517,151 +558,148 @@ input::placeholder {
     let fileName = "";
     let startFileName = "";
     function checkFileAndSubmit() {
-        startDate = document.getElementById('submitData').value;
-        startFileName = "Avis"+startDate+".csv";
-        document.getElementById('startButton').disabled = true;
-        document.getElementById('startButton').style.cursor = "not-allowed";
+      startDate = document.getElementById("submitData").value;
+      startFileName = "Avis" + startDate + ".csv";
+      document.getElementById("startButton").disabled = true;
+      document.getElementById("startButton").style.cursor = "not-allowed";
 
-        // console.log("submit file >>> ", startFileName);
-        // window.location.href = `/${startFileName}`;
+      // console.log("submit file >>> ", startFileName);
+      // window.location.href = `/${startFileName}`;
 
-
-        fetch(`/${startFileName}`).then(response => {
-            if (response.ok) {
-                document.getElementById("modalText").innerHTML = `The ${startFileName} file already exists. Would you like to now download an existing file without scraping it? Click the "Download" button to download it. To ignore and scrap again, click the “Ignore” button.`;
-                // If the file exists, download it
-                // window.location.href = `/static/${fileName}`;
-                window.location.href = "#m2-o";
-            } else {
-                // If the file doesn't exist, submit the form
-                submitFunction();
-            }
-        }).catch(err => {
-            console.error('Error fetching the file:', err);
+      fetch(`/${startFileName}`)
+        .then((response) => {
+          if (response.ok) {
+            document.getElementById(
+              "modalText"
+            ).innerHTML = `The ${startFileName} file already exists. Would you like to now download an existing file without scraping it? Click the "Download" button to download it. To ignore and scrap again, click the “Ignore” button.`;
+            // If the file exists, download it
+            // window.location.href = `/static/${fileName}`;
+            window.location.href = "#m2-o";
+          } else {
+            // If the file doesn't exist, submit the form
+            submitFunction();
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching the file:", err);
         });
     }
     const updatePercentage = (count, scrapeStartDate) => {
-        // console.log("count >>> ", count);
-        document.getElementById("progressBar").style.backgroundImage = "conic-gradient(#00ab15 " + count + "%, #cccccc 0)";
-        document.getElementById("progressText").innerHTML = count + "%";
-        if (count == "100") {
-            document.getElementById("download").style.visibility = "visible";
-            document.getElementById("progressText").style.color = "#00ab15";
-            document.getElementById("statusText").innerHTML = "Scrapped for " + scrapeStartDate;
-            document.getElementById("submitData").style.cursor = "text";
-            document.getElementById("submitData").disabled = false;
-            document.getElementById('startButton').disabled = false;
-            document.getElementById('startButton').style.cursor = "pointer";
+      // console.log("count >>> ", count);
+      document.getElementById("progressBar").style.backgroundImage =
+        "conic-gradient(#00ab15 " + count + "%, #cccccc 0)";
+      document.getElementById("progressText").innerHTML = count + "%";
+      if (count == "100") {
+        document.getElementById("download").style.visibility = "visible";
+        document.getElementById("progressText").style.color = "#00ab15";
+        document.getElementById("statusText").innerHTML =
+          "Scrapped for " + scrapeStartDate;
+        document.getElementById("submitData").style.cursor = "text";
+        document.getElementById("submitData").disabled = false;
+        document.getElementById("startButton").disabled = false;
+        document.getElementById("startButton").style.cursor = "pointer";
+      } else if (count != "0") {
+        document.getElementById("statusText").innerHTML =
+          "Scraping now for " + scrapeStartDate;
+        document.getElementById("submitData").style.cursor = "not-allowed";
+        document.getElementById("submitData").disabled = true;
+        document.getElementById("startButton").disabled = true;
+        document.getElementById("startButton").style.cursor = "not-allowed";
 
-
-            
-        } else if (count != "0") {
-            document.getElementById("statusText").innerHTML = "Scraping now for "+ scrapeStartDate;
-            document.getElementById("submitData").style.cursor = "not-allowed";
-            document.getElementById("submitData").disabled = true;
-            document.getElementById('startButton').disabled = true;
-            document.getElementById('startButton').style.cursor = "not-allowed";
-
-            document.getElementById("download").style.visibility = "hidden";
-
-        }
-        else {
-            document.getElementById("download").style.visibility = "hidden";
-            document.getElementById("progressText").style.color = "#9c9c9c";
-        }
-        fileName = "Avis"+scrapeStartDate+".csv";
-        // console.log("download link : ", fileName);
-        document.getElementById("downloadLink").href = "/"+fileName;
-    }
+        document.getElementById("download").style.visibility = "hidden";
+      } else {
+        document.getElementById("download").style.visibility = "hidden";
+        document.getElementById("progressText").style.color = "#9c9c9c";
+      }
+      fileName = "Avis" + scrapeStartDate + ".csv";
+      // console.log("download link : ", fileName);
+      document.getElementById("downloadLink").href = "/" + fileName;
+    };
 
     const getPercentage = () => {
-        axios.get('/getpercentage', "Hello", {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+      axios
+        .get("/getpercentage", "Hello", {
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-            .then(res => {
-                // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", res);
-                let percentage = res.data.percentageCount
-                if (percentage) {
-                    // console.log("disable >>>>>>>>", percentage);
-                    // document.getElementById("submitData").disabled = true;
-                    // document.getElementById("submitData").style.cursor = "not-allowed";
-                    document.getElementById("statusText").innerHTML = "Scraping now for "+ res.data.scrapeStartDate;
-
-                }
-                percentage = (Number(percentage)/63210*100).toFixed(0);
-                percentage = percentage.toString();
-                console.log("percentage >>> ", percentage);
-                updatePercentage(percentage, res.data.scrapeStartDate);
-            })
-            .catch(err => {
-            })
-    }
+        .then((res) => {
+          // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", res);
+          let percentage = res.data.percentageCount;
+          if (percentage) {
+            // console.log("disable >>>>>>>>", percentage);
+            // document.getElementById("submitData").disabled = true;
+            // document.getElementById("submitData").style.cursor = "not-allowed";
+            document.getElementById("statusText").innerHTML =
+              "Scraping now for " + res.data.scrapeStartDate;
+          }
+          percentage = ((Number(percentage) / 63210) * 100).toFixed(0);
+          percentage = percentage.toString();
+          console.log("percentage >>> ", percentage);
+          updatePercentage(percentage, res.data.scrapeStartDate);
+        })
+        .catch((err) => {});
+    };
 
     percentageInterval = setInterval(() => {
-        getPercentage()
-    }, 1000)
+      getPercentage();
+    }, 1000);
 
     const submitFunction = () => {
+      const deleteFileFuction = () => {
+        const deletefileName = "Avis2024-05.csv";
+        const data = { deletefileName: deletefileName };
+        axios
+          .post("/delete-file", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            console.log("file deleted!!!");
+          });
+      };
 
-        const deleteFileFuction = () => {
-            const deletefileName = "Avis2024-05.csv";
-            const data = {'deletefileName': deletefileName};
-            axios.post('/delete-file', data, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => {
-                    console.log("file deleted!!!");
-                })
-        }
+      try {
+        deleteFileFuction();
+      } catch (error) {}
 
-        try {
-            deleteFileFuction();
-        } catch (error) {
-            
-        }
-        
-        // event.preventDefault();
-        
-        const input = document.querySelector('#submitData');
+      // event.preventDefault();
 
-        name = input.value;
-        if (name) {
-            // console.log("input data: ", name);
-            const data = {'data': name};
-            
-            document.getElementById("statusText").innerHTML = "Scraping now for "+name;
-    
-            axios.post('/submit', data, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    // Handle the response data
-                    // console.log(response.data);
-                    // document.getElementById("statusText").innerHTML = "scraping now . . .";
-                })
-                .catch(error => {
-                    // Handle any errors
-                    console.error(error);
-                });
-            
-        }
+      const input = document.querySelector("#submitData");
 
+      name = input.value;
+      if (name) {
+        // console.log("input data: ", name);
+        const data = { data: name };
+
+        document.getElementById("statusText").innerHTML =
+          "Scraping now for " + name;
+
+        axios
+          .post("/submit", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            // Handle the response data
+            // console.log(response.data);
+            // document.getElementById("statusText").innerHTML = "scraping now . . .";
+          })
+          .catch((error) => {
+            // Handle any errors
+            console.error(error);
+          });
+      }
     };
     const downloadFuction = () => {
-        // const fileName = "Avis"+document.getElementById('submitData').value+".csv";
-        // console.log("download file --> ", startFileName);
+      // const fileName = "Avis"+document.getElementById('submitData').value+".csv";
+      // console.log("download file --> ", startFileName);
 
-        window.location.href = "/";
-        window.location.href = `/${startFileName}`;
-        document.getElementById("download").style.visibility = "hidden";
-
-    }
-    
-</script>
+      window.location.href = "/";
+      window.location.href = `/${startFileName}`;
+      document.getElementById("download").style.visibility = "hidden";
+    };
+  </script>
 </html>

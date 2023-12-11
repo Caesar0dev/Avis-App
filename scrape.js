@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const csv = require("csv-parser");
-const Result = require("./schema");
+// const Result = require("./schema");
 const { Parser } = require("json2csv");
 
 let percentage = 0;
