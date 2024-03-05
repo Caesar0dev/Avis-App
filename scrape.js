@@ -7,6 +7,8 @@ const { Parser } = require('json2csv');
 let percentage = 0;
 let scrapeStartDate = "";
 async function scrapFunction(givenDate) {
+    // const nowDate = new Date()
+    // console.log(nowDate)
     percentage = 0;
 
     var newLine = '\r\n';
@@ -143,11 +145,27 @@ async function scrapFunction(givenDate) {
 
                 await delay(3000);
 
+                // var button = document.getElementById('myButton'); // Replace 'myButton' with the ID of your button
+
+                // var timeoutId; // Variable to store the ID of the timer
+
+                // button.addEventListener('mousedown', function() {
+                //     timeoutId = setTimeout(function() {
+                //         // Code to execute after 10 seconds
+                //         console.log('Mouse click held for 10 seconds!');
+                //     }, 10000); // 10000 milliseconds = 10 seconds
+                // });
+
+                // button.addEventListener('mouseup', function() {
+                //     clearTimeout(timeoutId);
+                // });
+
                 async function processFilesSequentially(filePaths) {
                     try {
                         const data = await readFileSequentially(filePaths);
                         for (const row of data) {
                             const searchKey = row[3];
+                            console.log("SearchKey >>> ", searchKey)
                             // const state = row[0];
                             // const city = row[1];
                             const fullLocation = row[4];
